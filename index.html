@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tôi là bố Minh Đăng. Chào mừng đến với công cụ đếm Rank của Moz Bar</title>
+  <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;border-color:#aaa;}
+    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#333;background-color:#fff;}
+    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aaa;color:#fff;background-color:#f38630;}
+    .tg .tg-j2zy{background-color:#FCFBE3;vertical-align:top}
+    .tg .tg-yw4l{vertical-align:top}
+  </style>
+</head>
+<body>
+  <form style="text-align:left;" id="paypalform" action="cal.php" method="POST" enctype="multipart/form-data">
+    <input type="file" id="files" name="files[]" multiple="" />
+    <output id="list"></output>
+    <input type="submit" name="submit" value="Submit">
+  </form>
+  <script>
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+
+      // files is a FileList of File objects. List some properties.
+      var output = [];
+      for (var i = 0, f; f = files[i]; i++) {
+        output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+          f.size, ' bytes, last modified: ',
+          f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+          '</li>');
+      }
+      document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  </script>
+  
+</body>
+</html>
+
