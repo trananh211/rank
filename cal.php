@@ -53,8 +53,8 @@
 			$b[$keyword] = getRankFolder($newpath);
 			// echo "-------------------------\n<br>";
 		}
-		shell_exec('rmdir /s /q "D:/Sync G/MMO/API/test/result/"');
-		shell_exec('mkdir "D:/Sync G/MMO/API/test/result"');
+		// shell_exec('rmdir /s /q "D:/Sync G/MMO/API/test/result/"');
+		// shell_exec('mkdir "D:/Sync G/MMO/API/test/result"');
 		return $b;
 		
 	}
