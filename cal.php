@@ -54,8 +54,8 @@
 			$b[$keyword] = getRankFolder($newpath);
 			// echo "-------------------------\n<br>";
 		}
-		// shell_exec('rmdir /s /q "D:/Sync G/MMO/API/test/result/"');
-		// shell_exec('mkdir "D:/Sync G/MMO/API/test/result"');
+		shell_exec('rmdir /s /q "D:/Sync G/MMO/API/test/result/"');
+		shell_exec('mkdir "D:/Sync G/MMO/API/test/result"');
 		return $b;
 		
 	}
@@ -90,7 +90,7 @@
 		// how many lines in this file
 		$numLines = count($content);
 		$group = array();
-		$vpos = $vda = $vpa = $vlink = '';
+		$vpos = $vda = $vpa = $vlink = $link1 = '';
 		// process each line
 		for ($i = 0; $i < $numLines; $i++) {
 			$line = trim($content[$i]);
@@ -100,7 +100,7 @@
 			$position = '<div class="position">';
 			$pa = '<div class="title">PA';
 			$da = '<div class="title">DA';
-			$link = '<div class="links">';
+			$link = '<p class="line">';
 			$link2 = '<a href="https://moz.com/researchtools/ose/links?site=http';
 
 			//co ky tu trong chuoi
@@ -122,13 +122,19 @@
 				$vpa = trim($string);
 			} 
 
+			if ( strpos ( $string, $link ) !== false ) {
+				$string = str_replace('<p class="line">', '', $string);
+				$string = str_replace('links </p>', '', $string);
+				$link1 = trim($string);
+			} 
+
 			if ( strpos( $string, $link2 ) !== false ) {
 				$string = str_replace('<a href="https://moz.com/researchtools/ose/links?site=http', 'http', $string);
 				$vlink = trim(explode('&', $string)[0]);
 			}
 			
 		}
-		$a = array('pos'=>$vpos,'da'=>$vda,'pa'=>$vpa,'link'=>$vlink);
+		$a = array('pos'=>$vpos,'da'=>$vda,'pa'=>$vpa,'link'=>$vlink,'n_link'=>$link1);
 		if(!($vpos == '' && $vda == '' && $vpa == '' && $vlink == '')){
 			$group = $a;
 		}
@@ -349,7 +355,7 @@ echo "</pre>";
 					<td class="tg-j2zy center"><?php echo $value['pa']; ?></td>
 					<td class="tg-j2zy center"></td>
 					<td class="tg-j2zy center"></td>
-					<td class="tg-j2zy center"></td>
+					<td class="tg-j2zy center"><?php echo $value['n_link']; ?></td>
 					<td class="tg-j2zy center"></td>
 					<td class="tg-j2zy center"></td>
 					<td class="tg-j2zy center"></td>
