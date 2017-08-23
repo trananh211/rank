@@ -1,5 +1,6 @@
 <?php 
-
+	echo "<pre>";
+	$path_root = $_SERVER['DOCUMENT_ROOT']."/rank/";
 	if ( $_SERVER['REQUEST_METHOD'] === 'POST') {
 	    echo "<pre>";
 		$files = $_FILES['files']['name'];
@@ -25,7 +26,7 @@
 						//move it to where we want it to be
 						move_uploaded_file($_FILES['files']['tmp_name'][$key], $target_dir);
 						$message = 'Congratulations!  Your file was accepted.';
-						shell_exec('D:\Sync G\MMO\API\test\rank.bat');
+						shell_exec($path_root.'tool/rank.bat');
 					}
 					echo $message;	
 				}
@@ -37,8 +38,8 @@
 	}else{
 		header("Location: index.html");
 	}
-	//$r = actionRank();
-
+	// $r = actionRank();
+	// print_r($_SERVER);die();
 	function actionRank(){
 		$path = "D:/Sync G/MMO/API/test/result/";
 		$files = scandir($path);
@@ -160,7 +161,7 @@
     // Trả về mảng đã sắp xếp
 		return $mang;
 	}
-
+	echo "</pre>";
 	?>
 
 
